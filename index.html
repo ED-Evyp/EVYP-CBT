@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0A0A0A" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="EVYP-CBT" />
+  <meta name="description" content="EVYP Crop Biostimulation Technologies — Product information portal" />
+  <title>EVYP-CBT</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <img src="icons/logo-white.png" alt="EVYP Crop Biostimulation Technologies" class="topbar-logo" />
+    <span class="topbar-tag">Product Portal</span>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="content" id="content">
+
+    <!-- HOME / SPLASH -->
+    <section class="page active" id="page-home">
+      <div class="home-hero">
+        <div class="hero-eyebrow">Manufacturer · Formulator · Partner</div>
+        <h1 class="hero-title">Precision<br><span class="accent">Biostimulation</span><br>at the Source</h1>
+        <p class="hero-sub">EVYP CBT produces amino acid-based biostimulants and custom crop nutrition solutions for agriculture professionals worldwide.</p>
+        <div class="hero-divider"></div>
+        <div class="hero-nav-grid">
+          <button class="hero-card" onclick="navigate('specs')">
+            <span class="hero-card-icon">⬡</span>
+            <span class="hero-card-label">Product Specs</span>
+            <span class="hero-card-arrow">→</span>
+          </button>
+          <button class="hero-card" onclick="navigate('custom')">
+            <span class="hero-card-icon">⬡</span>
+            <span class="hero-card-label">Custom Products</span>
+            <span class="hero-card-arrow">→</span>
+          </button>
+          <button class="hero-card" onclick="navigate('usage')">
+            <span class="hero-card-icon">⬡</span>
+            <span class="hero-card-label">Usage Suggestions</span>
+            <span class="hero-card-arrow">→</span>
+          </button>
+          <button class="hero-card" onclick="navigate('trials')">
+            <span class="hero-card-icon">⬡</span>
+            <span class="hero-card-label">Trial Results</span>
+            <span class="hero-card-arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT SPECS -->
+    <section class="page" id="page-specs">
+      <div class="page-header">
+        <div class="page-eyebrow">01</div>
+        <h2 class="page-title">Product Specs</h2>
+        <p class="page-subtitle">Technical specifications and composition data for EVYP CBT product lines.</p>
+      </div>
+      <div class="placeholder-content">
+        <div class="placeholder-block">
+          <div class="placeholder-icon">📋</div>
+          <p>Product specifications will be added here.<br>Each product card will show composition, guaranteed analysis, physical properties, and packaging options.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOM PRODUCTS -->
+    <section class="page" id="page-custom">
+      <div class="page-header">
+        <div class="page-eyebrow">02</div>
+        <h2 class="page-title">Custom Products</h2>
+        <p class="page-subtitle">Bespoke formulations engineered to your crop and market specifications.</p>
+      </div>
+      <div class="placeholder-content">
+        <div class="placeholder-block">
+          <div class="placeholder-icon">⚗️</div>
+          <p>Custom formulation capabilities will be detailed here.<br>Amino acid blends combined with seaweed extracts, vitamins, trace elements, and micronutrients — tailored to your requirements.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- USAGE SUGGESTIONS -->
+    <section class="page" id="page-usage">
+      <div class="page-header">
+        <div class="page-eyebrow">03</div>
+        <h2 class="page-title">Usage Suggestions</h2>
+        <p class="page-subtitle">Application protocols, dosage guidelines, and crop-specific recommendations.</p>
+      </div>
+      <div class="placeholder-content">
+        <div class="placeholder-block">
+          <div class="placeholder-icon">🌱</div>
+          <p>Application guidelines will be added here.<br>Foliar and soil application rates, timing windows, compatibility notes, and crop-specific programs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRIALS -->
+    <section class="page" id="page-trials">
+      <div class="page-header">
+        <div class="page-eyebrow">04</div>
+        <h2 class="page-title">Trial Results</h2>
+        <p class="page-subtitle">Field trial data and efficacy results across crops and conditions.</p>
+      </div>
+      <div class="placeholder-content">
+        <div class="placeholder-block">
+          <div class="placeholder-icon">📊</div>
+          <p>Trial data and results will be presented here.<br>Yield impact, quality parameters, and agronomic observations from field and greenhouse trials.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottomnav" id="bottomnav">
+    <button class="nav-item active" id="nav-home" onclick="navigate('home')">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span>Home</span>
+    </button>
+    <button class="nav-item" id="nav-specs" onclick="navigate('specs')">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+      </svg>
+      <span>Specs</span>
+    </button>
+    <button class="nav-item" id="nav-custom" onclick="navigate('custom')">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+      </svg>
+      <span>Custom</span>
+    </button>
+    <button class="nav-item" id="nav-usage" onclick="navigate('usage')">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <span>Usage</span>
+    </button>
+    <button class="nav-item" id="nav-trials" onclick="navigate('trials')">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+      </svg>
+      <span>Trials</span>
+    </button>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
