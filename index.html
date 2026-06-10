@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0A0A0A" />
+  <meta name="theme-color" content="#0A0A0A" id="meta-theme" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="apple-mobile-web-app-title" content="EVYP-CBT" />
@@ -17,42 +17,89 @@
 
   <!-- Top Navigation Bar -->
   <header class="topbar">
-    <img src="icons/logo-white.png" alt="EVYP Crop Biostimulation Technologies" class="topbar-logo" />
-    <span class="topbar-tag">Product Portal</span>
+    <div class="topbar-brand">
+      <img src="icons/logo-white.png"  alt="EVYP CBT" class="topbar-logo logo-dark"  />
+      <img src="icons/logo-color.png"  alt="EVYP CBT" class="topbar-logo logo-light" />
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
   </header>
 
   <!-- Main Content Area -->
   <main class="content" id="content">
 
-    <!-- HOME / SPLASH -->
+    <!-- HOME -->
     <section class="page active" id="page-home">
       <div class="home-hero">
-        <div class="hero-eyebrow">Manufacturer · Formulator · Partner</div>
-        <h1 class="hero-title">Precision<br><span class="accent">Biostimulation</span><br>at the Source</h1>
-        <p class="hero-sub">EVYP CBT produces amino acid-based biostimulants and custom crop nutrition solutions for agriculture professionals worldwide.</p>
+
+        <div class="hero-identity">
+          <div class="hero-eyebrow">Manufacturer · Formulator · Partner</div>
+          <h1 class="hero-company">EVYP Crop Biostimulation Technologies</h1>
+          <p class="hero-sub">Amino acid-based biostimulants and custom crop nutrition solutions. Produced at source — formulated for your market.</p>
+        </div>
+
         <div class="hero-divider"></div>
+
         <div class="hero-nav-grid">
           <button class="hero-card" onclick="navigate('specs')">
-            <span class="hero-card-icon">⬡</span>
-            <span class="hero-card-label">Product Specs</span>
-            <span class="hero-card-arrow">→</span>
+            <div class="hero-card-num">01</div>
+            <div class="hero-card-label">Product Specs</div>
+            <div class="hero-card-desc">Composition, analysis &amp; packaging</div>
           </button>
           <button class="hero-card" onclick="navigate('custom')">
-            <span class="hero-card-icon">⬡</span>
-            <span class="hero-card-label">Custom Products</span>
-            <span class="hero-card-arrow">→</span>
+            <div class="hero-card-num">02</div>
+            <div class="hero-card-label">Custom Products</div>
+            <div class="hero-card-desc">Bespoke formulations for your crop</div>
           </button>
           <button class="hero-card" onclick="navigate('usage')">
-            <span class="hero-card-icon">⬡</span>
-            <span class="hero-card-label">Usage Suggestions</span>
-            <span class="hero-card-arrow">→</span>
+            <div class="hero-card-num">03</div>
+            <div class="hero-card-label">Usage Suggestions</div>
+            <div class="hero-card-desc">Application protocols &amp; dosages</div>
           </button>
           <button class="hero-card" onclick="navigate('trials')">
-            <span class="hero-card-icon">⬡</span>
-            <span class="hero-card-label">Trial Results</span>
-            <span class="hero-card-arrow">→</span>
+            <div class="hero-card-num">04</div>
+            <div class="hero-card-label">Trial Results</div>
+            <div class="hero-card-desc">Field efficacy data</div>
           </button>
         </div>
+
+        <!-- Certifications Strip -->
+        <div class="cert-section">
+          <div class="cert-label">Certifications &amp; Standards</div>
+          <div class="cert-strip">
+            <div class="cert-badge">
+              <img src="icons/cert-patent.png"    alt="European Patent EP 2537823" class="cert-img cert-patent" />
+              <span class="cert-name">EP 2537823</span>
+            </div>
+            <div class="cert-badge">
+              <img src="icons/cert-ecocert.png"   alt="Approved by ECOCERT Inputs" class="cert-img cert-ecocert cert-on-dark" />
+              <img src="icons/cert-ecocert-white.png" alt="Approved by ECOCERT Inputs" class="cert-img cert-ecocert cert-on-light" />
+              <span class="cert-name">ECOCERT Inputs</span>
+            </div>
+            <div class="cert-badge">
+              <img src="icons/cert-organic.png"   alt="Suitable for Organic Farming" class="cert-img cert-organic" />
+              <span class="cert-name">Organic Farming</span>
+            </div>
+            <div class="cert-badge">
+              <img src="icons/cert-iso9001.png"   alt="ISO 9001" class="cert-img cert-iso" />
+              <span class="cert-name">ISO 9001</span>
+            </div>
+            <div class="cert-badge">
+              <img src="icons/cert-iso14001.png"  alt="ISO 14001" class="cert-img cert-iso" />
+              <span class="cert-name">ISO 14001</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -119,7 +166,7 @@
   </main>
 
   <!-- Bottom Navigation -->
-  <nav class="bottomnav" id="bottomnav">
+  <nav class="bottomnav">
     <button class="nav-item active" id="nav-home" onclick="navigate('home')">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
@@ -128,13 +175,13 @@
     </button>
     <button class="nav-item" id="nav-specs" onclick="navigate('specs')">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
       </svg>
       <span>Specs</span>
     </button>
     <button class="nav-item" id="nav-custom" onclick="navigate('custom')">
       <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/>
       </svg>
       <span>Custom</span>
     </button>

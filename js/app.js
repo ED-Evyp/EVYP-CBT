@@ -1,48 +1,70 @@
-// ─── NAVIGATION ─────────────────────────────────────────────────────────────
+// ─── THEME ───────────────────────────────────────────────────────────────────
+
+const THEME_KEY = 'evyp-theme';
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('meta-theme').content = theme === 'dark' ? '#0A0A0A' : '#F5F5F3';
+  localStorage.setItem(THEME_KEY, theme);
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+function initTheme() {
+  // Respect saved preference, then system preference
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved) {
+    applyTheme(saved);
+  } else {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(prefersDark ? 'dark' : 'light');
+  }
+}
+
+document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────────────
 
 const PAGES = ['home', 'specs', 'custom', 'usage', 'trials'];
 
 function navigate(id) {
   if (!PAGES.includes(id)) return;
 
-  // Deactivate all pages
   PAGES.forEach(p => {
-    const page = document.getElementById(`page-${p}`);
-    const nav  = document.getElementById(`nav-${p}`);
-    if (page) page.classList.remove('active');
-    if (nav)  nav.classList.remove('active');
+    document.getElementById(`page-${p}`)?.classList.remove('active');
+    document.getElementById(`nav-${p}`)?.classList.remove('active');
   });
 
-  // Activate target
-  const target    = document.getElementById(`page-${id}`);
-  const targetNav = document.getElementById(`nav-${id}`);
-  if (target)    target.classList.add('active');
-  if (targetNav) targetNav.classList.add('active');
+  document.getElementById(`page-${id}`)?.classList.add('active');
+  document.getElementById(`nav-${id}`)?.classList.add('active');
+  document.getElementById('content').scrollTop = 0;
 
-  // Scroll content to top
-  const content = document.getElementById('content');
-  if (content) content.scrollTop = 0;
-
-  // Update URL hash without pushing to history
   history.replaceState(null, '', id === 'home' ? '#' : `#${id}`);
 }
 
-// Handle initial hash on load
 function initNavFromHash() {
   const hash = window.location.hash.replace('#', '').trim();
-  const target = PAGES.includes(hash) ? hash : 'home';
-  navigate(target);
+  navigate(PAGES.includes(hash) ? hash : 'home');
 }
 
-window.addEventListener('DOMContentLoaded', initNavFromHash);
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+
+window.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initNavFromHash();
+});
+
 window.addEventListener('hashchange', initNavFromHash);
 
-// ─── SERVICE WORKER REGISTRATION ────────────────────────────────────────────
+// ─── SERVICE WORKER ───────────────────────────────────────────────────────────
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('[EVYP-CBT] SW registered:', reg.scope))
-      .catch(err => console.warn('[EVYP-CBT] SW registration failed:', err));
+      .then(r => console.log('[EVYP-CBT] SW registered:', r.scope))
+      .catch(e => console.warn('[EVYP-CBT] SW failed:', e));
   });
 }
