@@ -282,3 +282,69 @@
   border-radius: 3px;
   transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
 }
+
+/* ── BOTTLE SHOWCASE ─────────────────────────────────────────── */
+.bottle-showcase {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.bottle-img {
+  width: 110px;
+  flex-shrink: 0;
+  display: block;
+  /* Subtle drop shadow so bottle floats off any background */
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+  transition: filter 0.25s;
+}
+[data-theme="light"] .bottle-img {
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.18));
+}
+
+.bottle-info {
+  flex: 1;
+  padding-bottom: 8px;
+}
+
+.bottle-eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+
+.bottle-name {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 6vw, 38px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.0;
+  color: var(--text-primary);
+}
+
+@media (min-width: 480px) {
+  .bottle-img { width: 130px; }
+}
+@media (min-width: 768px) {
+  .bottle-img { width: 150px; }
+  .bottle-name { font-size: 42px; }
+}
+
+/* ── SPIDER: bigger canvas container ────────────────────────── */
+.spider-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.spider-canvas {
+  display: block;
+  width: 100% !important;
+  max-width: 520px;
+}

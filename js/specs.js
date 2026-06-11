@@ -47,10 +47,41 @@ function selectProduct(p) {
 }
 
 // ── MAIN RENDER ──────────────────────────────────────────────
+// Map product names to image filenames
+const BOTTLE_IMAGES = {
+  'Ultra Green':          'Ultra_Green',
+  'Amino Power':          'Amino_Power',
+  'Amino16':              'Amino16',
+  'Amino Cell Antistress':'Amino_Cell_Antistress',
+  'Amino 16 BZn':         'Amino_16_BZn',
+  'Fruitfix':             'Fruitfix',
+  'Granbrix':             'Granbrix',
+  'MicroRS':              'MicroRS',
+  'NF Hyd1':              'NF_Hyd1',
+  'BMC Fixer':            'BMC_Fixer',
+  'Amino Cell S':         'Amino_Cell_S',
+  'Amino Cell PK':        'Amino_Cell_PK',
+  'Amino Cell Si 3%':     'Amino_Cell_Si_3_',
+};
+
+function renderBottle(p) {
+  const fname = BOTTLE_IMAGES[p];
+  if (!fname) return '';
+  return `
+    <div class="bottle-showcase">
+      <img src="images/products/${fname}.png" alt="${p} bottle" class="bottle-img" />
+      <div class="bottle-info">
+        <div class="bottle-eyebrow">EVYP Crop Biostimulation Technologies</div>
+        <h2 class="bottle-name">${p}</h2>
+      </div>
+    </div>`;
+}
+
 function renderProduct(p) {
   const d = PRODUCT_DATA[p];
   const el = document.getElementById('prodContent');
   el.innerHTML = `
+    ${renderBottle(p)}
     ${renderGeneral(d.general)}
     ${renderContent(d.content)}
     ${renderAminogram(d.aminoacids_free, d.aminoacids_total)}
@@ -354,31 +385,50 @@ function renderScores(scores) {
       <div class="spider-wrap">
         <canvas id="cvSpider" class="spider-canvas"></canvas>
       </div>
-      <div class="score-legend" id="scoreLegend"></div>
     </div>`;
 }
+
 function drawSpider(scores) {
   const cv = document.getElementById('cvSpider'); if (!cv) return;
   const entries = Object.entries(scores).filter(([,v]) => v !== null);
   if (!entries.length) return;
   const n = entries.length;
-  const size = Math.min(cv.parentElement.offsetWidth, 360);
-  cv.width = size; cv.height = size;
+
+  // Label definitions — two lines max, kept short
+  const labelLines = {
+    'Nitrogen Metabolism & Protein Synthesis': ['N Metabolism', '& Protein Synth.'],
+    'Stress Tolerance & Osmoregulation':       ['Stress', 'Tolerance'],
+    'Root Development & Nutrient Uptake':      ['Root Dev.', '& Nutrient Uptake'],
+    'Photosynthesis & Energy Metabolism':      ['Photosynthesis', '& Energy'],
+    'Growth Regulation & Hormone Precursors':  ['Growth Reg.', '& Hormones'],
+    'Reproductive Development & Quality':      ['Reprod. Dev.', '& Quality'],
+  };
+
+  // Canvas sizing — large enough that label padding doesn't cramp the web
+  const availW = cv.parentElement.offsetWidth || 400;
+  const size = Math.min(availW, 520);
+  const LABEL_PAD = 70;   // px reserved on each side for labels
+  const R = (size / 2) - LABEL_PAD;  // web radius fits inside label zone
   const cx = size / 2, cy = size / 2;
-  const R = size * 0.36, maxScore = 10;
+
+  cv.width = size;
+  cv.height = size;
+  const maxScore = 10;
   const ctx = cv.getContext('2d');
   ctx.clearRect(0, 0, size, size);
 
-  const orange = '#E8631A';
-  const gridCol  = isDark() ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
-  const axisCol  = isDark() ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)';
-  const textCol  = isDark() ? '#C0C0C0' : '#555555';
-  const fillCol  = isDark() ? 'rgba(232,99,26,0.22)' : 'rgba(232,99,26,0.15)';
+  const orange   = '#E8631A';
+  const gridCol  = isDark() ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)';
+  const axisCol  = isDark() ? 'rgba(255,255,255,0.14)' : 'rgba(0,0,0,0.13)';
+  const textCol  = isDark() ? '#BEBEBE' : '#4A4A4A';
+  const scoreCol = isDark() ? 'rgba(232,99,26,0.55)' : 'rgba(232,99,26,0.45)';
+  const fillCol  = isDark() ? 'rgba(232,99,26,0.18)' : 'rgba(232,99,26,0.12)';
 
-  const angleStep = (Math.PI * 2) / n;
+  const angleStep  = (Math.PI * 2) / n;
   const startAngle = -Math.PI / 2;
+  const FONT_SZ    = Math.max(10, Math.round(size / 46));
 
-  // Grid rings
+  // ── Grid rings ───────────────────────────────────────────────
   for (let ring = 1; ring <= 5; ring++) {
     const r = R * ring / 5;
     ctx.beginPath();
@@ -389,15 +439,9 @@ function drawSpider(scores) {
     }
     ctx.closePath();
     ctx.strokeStyle = gridCol; ctx.lineWidth = 1; ctx.stroke();
-    // Ring label (score value)
-    if (ring % 2 === 0) {
-      ctx.fillStyle = isDark() ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)';
-      ctx.font = '9px sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText(ring * 2, cx + 4, cy - r + 3);
-    }
   }
 
-  // Axis spokes
+  // ── Axis spokes ──────────────────────────────────────────────
   for (let i = 0; i < n; i++) {
     const a = startAngle + i * angleStep;
     ctx.beginPath();
@@ -406,62 +450,84 @@ function drawSpider(scores) {
     ctx.strokeStyle = axisCol; ctx.lineWidth = 1; ctx.stroke();
   }
 
-  // Data polygon
+  // ── Data polygon ─────────────────────────────────────────────
   ctx.beginPath();
   entries.forEach(([,v], i) => {
     const val = typeof v === 'number' ? v : (v?.mid ?? 0);
-    const r = R * (val / maxScore);
-    const a = startAngle + i * angleStep;
-    const x = cx + r * Math.cos(a), y = cy + r * Math.sin(a);
-    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    const r   = R * (val / maxScore);
+    const a   = startAngle + i * angleStep;
+    i === 0 ? ctx.moveTo(cx + r * Math.cos(a), cy + r * Math.sin(a))
+            : ctx.lineTo(cx + r * Math.cos(a), cy + r * Math.sin(a));
   });
   ctx.closePath();
-  ctx.fillStyle = fillCol; ctx.fill();
+  ctx.fillStyle = fillCol;  ctx.fill();
   ctx.strokeStyle = orange; ctx.lineWidth = 2.5; ctx.stroke();
 
-  // Data points
+  // ── Data points with score bubble ───────────────────────────
   entries.forEach(([,v], i) => {
     const val = typeof v === 'number' ? v : (v?.mid ?? 0);
-    const r = R * (val / maxScore);
-    const a = startAngle + i * angleStep;
-    const x = cx + r * Math.cos(a), y = cy + r * Math.sin(a);
-    ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2);
+    const r   = R * (val / maxScore);
+    const a   = startAngle + i * angleStep;
+    const px  = cx + r * Math.cos(a), py = cy + r * Math.sin(a);
+
+    // Dot
+    ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI * 2);
     ctx.fillStyle = orange; ctx.fill();
-    ctx.strokeStyle = isDark() ? '#0A0A0A' : '#ffffff'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.strokeStyle = isDark() ? '#0A0A0A' : '#ffffff';
+    ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Score badge just inside the dot (centred on spoke, slightly inward)
+    const bR  = R * 0.72;  // badge at 72% of radius toward tip
+    const bx  = cx + bR * Math.cos(a), by = cy + bR * Math.sin(a);
+    const txt = val.toFixed(1);
+    const tw  = ctx.measureText(txt).width + 8;
+    const th  = FONT_SZ + 4;
+    ctx.fillStyle = scoreCol;
+    ctx.beginPath();
+    ctx.roundRect ? ctx.roundRect(bx - tw/2, by - th/2, tw, th, 3)
+                  : ctx.rect(bx - tw/2, by - th/2, tw, th);
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `bold ${FONT_SZ}px sans-serif`;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(txt, bx, by);
   });
 
-  // Axis labels (outside ring)
-  const shortLabels = {
-    'Nitrogen Metabolism & Protein Synthesis': 'N Metabolism',
-    'Stress Tolerance & Osmoregulation': 'Stress Tolerance',
-    'Root Development & Nutrient Uptake': 'Root Dev.',
-    'Photosynthesis & Energy Metabolism': 'Photosynthesis',
-    'Growth Regulation & Hormone Precursors': 'Growth Reg.',
-    'Reproductive Development & Quality': 'Reprod. Dev.',
-  };
-  const labelR = R + 26;
-  entries.forEach(([key, v], i) => {
-    const a = startAngle + i * angleStep;
-    const x = cx + labelR * Math.cos(a), y = cy + labelR * Math.sin(a);
-    const label = shortLabels[key] || key;
-    ctx.fillStyle = textCol; ctx.font = 'bold 10px sans-serif';
-    ctx.textAlign = Math.cos(a) > 0.1 ? 'left' : Math.cos(a) < -0.1 ? 'right' : 'center';
-    ctx.fillText(label, x, y + 3);
-  });
+  // ── Axis labels — proper multiline, anchored by quadrant ─────
+  ctx.textBaseline = 'middle';
+  const labelR    = R + 16;   // gap between web edge and first text line
+  const lineH     = FONT_SZ + 3;
 
-  // Score legend below
-  const legend = document.getElementById('scoreLegend');
-  if (legend) {
-    legend.innerHTML = entries.map(([key, v]) => {
-      const val = typeof v === 'number' ? v : (v?.mid ?? 0);
-      const short = shortLabels[key] || key;
-      const pct = Math.round(val * 10);
-      return `<div class="score-item">
-        <div class="score-bar-wrap"><div class="score-bar" style="width:${pct}%"></div></div>
-        <div class="score-meta"><span class="score-name">${short}</span><span class="score-val">${val}/10</span></div>
-      </div>`;
-    }).join('');
-  }
+  entries.forEach(([key], i) => {
+    const a     = startAngle + i * angleStep;
+    const cosA  = Math.cos(a), sinA = Math.sin(a);
+    const lines = labelLines[key] || [key];
+
+    // Anchor point at tip of axis
+    const lx = cx + labelR * cosA;
+    const ly = cy + labelR * sinA;
+
+    // Text alignment
+    let align;
+    if      (cosA >  0.3) align = 'left';
+    else if (cosA < -0.3) align = 'right';
+    else                   align = 'center';
+
+    // Vertical offset so label block sits clear of the web
+    const blockH  = lines.length * lineH;
+    let baseY;
+    if      (sinA < -0.3) baseY = ly - blockH;       // above axis tip
+    else if (sinA >  0.3) baseY = ly + 4;             // below axis tip
+    else                   baseY = ly - blockH / 2;   // vertically centred
+
+    ctx.fillStyle  = textCol;
+    ctx.font       = `bold ${FONT_SZ}px sans-serif`;
+    ctx.textAlign  = align;
+
+    lines.forEach((line, li) => {
+      ctx.fillText(line, lx, baseY + li * lineH + lineH / 2);
+    });
+  });
 }
 
 // ── INIT ─────────────────────────────────────────────────────
