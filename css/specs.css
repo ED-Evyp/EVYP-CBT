@@ -1,0 +1,284 @@
+/* ── SPECS LAYOUT ────────────────────────────────────────────── */
+.specs-main {
+  position: fixed;
+  top: var(--topbar-h);
+  left: 0; right: 0;
+  bottom: calc(var(--bottomnav-h) + var(--safe-bottom));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── PRODUCT SELECTOR TABS ───────────────────────────────────── */
+.prod-selector-wrap {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.prod-selector-wrap::-webkit-scrollbar { display: none; }
+
+.prod-selector {
+  display: flex;
+  gap: 0;
+  padding: 0 16px;
+  min-width: max-content;
+}
+
+.prod-tab {
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  position: relative;
+}
+.prod-tab:hover { color: var(--text-primary); }
+.prod-tab.active {
+  color: var(--orange);
+  border-bottom-color: var(--orange);
+}
+
+/* ── PRODUCT CONTENT SCROLL AREA ─────────────────────────────── */
+.prod-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 16px 32px;
+}
+.prod-content::-webkit-scrollbar { width: 3px; }
+.prod-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+@media (min-width: 768px) {
+  .prod-content { padding: 28px 32px 40px; max-width: 860px; margin: 0 auto; width: 100%; }
+}
+
+/* ── SHARED SECTION STYLES ───────────────────────────────────── */
+.spec-section {
+  margin-bottom: 32px;
+}
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── GENERAL PILLS ───────────────────────────────────────────── */
+.gen-section {
+  margin-bottom: 24px;
+}
+.gen-pill {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin: 0 8px 8px 0;
+  min-width: 90px;
+}
+.gen-pill-key {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.gen-pill-val {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── CONTENT / COMPOSITION ───────────────────────────────────── */
+.content-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.content-hero-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 18px;
+  transition: border-color 0.15s;
+}
+.content-hero-card.accent {
+  border-left-color: var(--orange);
+  background: var(--surface-2);
+}
+.content-hero-val {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 7vw, 40px);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.content-hero-card.accent .content-hero-val { color: var(--orange); }
+.content-hero-unit {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+.content-hero-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.content-other {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.content-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.content-row:last-child { border-bottom: none; }
+.content-row-key { color: var(--text-muted); }
+.content-row-val {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── AMINOGRAM ───────────────────────────────────────────────── */
+.aminogram-legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.legend-dot.total  { background: #4EC9B0; }
+.legend-dot.free   { background: #E8631A; }
+[data-theme="light"] .legend-dot.total { background: #2A9D8F; }
+
+.aminogram-canvas { width: 100% !important; }
+
+/* ── CHART CANVASES ──────────────────────────────────────────── */
+.chart-canvas { display: block; width: 100%; }
+
+/* ── OSMOLYTES + SUGARS GRID ─────────────────────────────────── */
+.osmo-sugar-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 600px) {
+  .osmo-sugar-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── MICROORGANISMS ──────────────────────────────────────────── */
+.micro-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  font-style: italic;
+}
+.micro-table {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.micro-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.micro-row:last-child { border-bottom: none; }
+.micro-name { color: var(--text-muted); font-style: italic; }
+.micro-val  {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ── SPIDER / SCORE ──────────────────────────────────────────── */
+.score-section { }
+.spider-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.spider-canvas {
+  display: block;
+  max-width: 360px;
+  width: 100%;
+}
+
+.score-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.score-item { display: flex; flex-direction: column; gap: 4px; }
+.score-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 11px;
+}
+.score-name { color: var(--text-muted); font-weight: 500; }
+.score-val  { color: var(--orange); font-weight: 700; font-size: 12px; }
+.score-bar-wrap {
+  height: 5px;
+  background: var(--surface-2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.score-bar {
+  height: 100%;
+  background: var(--orange);
+  border-radius: 3px;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+}
