@@ -1,0 +1,350 @@
+/* ── USAGE MAIN LAYOUT ───────────────────────────────────────── */
+.usage-main {
+  position: fixed;
+  top: var(--topbar-h); left: 0; right: 0;
+  bottom: calc(var(--bottomnav-h) + var(--safe-bottom));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 28px 16px 48px;
+}
+.usage-main::-webkit-scrollbar { width: 3px; }
+.usage-main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ── PAGE HEADER ─────────────────────────────────────────────── */
+.usage-header { margin-bottom: 28px; }
+.usage-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--orange); margin-bottom: 12px;
+}
+.usage-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 7vw, 42px); font-weight: 900;
+  text-transform: uppercase; letter-spacing: -0.02em;
+  line-height: 1.0; color: var(--text-primary); margin-bottom: 12px;
+}
+.usage-title .accent { color: var(--orange); }
+.usage-intro {
+  font-size: 13px; color: var(--text-muted);
+  line-height: 1.7; max-width: 560px;
+}
+
+/* ── CROP SELECTOR ───────────────────────────────────────────── */
+.crop-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.crop-card {
+  flex: 1;
+  min-width: 140px;
+  max-width: 220px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.crop-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+.crop-card:hover::before,
+.crop-card.active::before { transform: scaleX(1); }
+.crop-card:hover { border-color: var(--orange); transform: translateY(-2px); }
+.crop-card.active {
+  border-color: var(--orange);
+  background: var(--surface-2);
+}
+.crop-icon { font-size: 36px; line-height: 1; }
+.crop-name {
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: -0.01em;
+  color: var(--text-primary); text-align: center;
+}
+.crop-opts {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-faint);
+}
+.crop-card.active .crop-opts { color: var(--orange); }
+
+/* ── PROGRAM VIEW ────────────────────────────────────────────── */
+.program-view { animation: fadeUp 0.2s ease; }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── OPTION TABS ─────────────────────────────────────────────── */
+.option-tabs {
+  margin-bottom: 28px;
+}
+.option-tabs-inner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.option-crop-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.option-crop-icon { font-size: 22px; }
+.option-crop-name {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: -0.01em;
+  color: var(--text-primary); flex: 1;
+}
+.change-crop-btn {
+  font-size: 11px; font-weight: 600;
+  color: var(--text-muted); cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.change-crop-btn:hover { color: var(--orange); border-color: var(--orange); }
+
+.option-btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.opt-btn {
+  flex: 1;
+  min-width: 120px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+}
+.opt-btn:hover { border-color: var(--orange); }
+.opt-btn.active {
+  border-color: var(--orange);
+  background: var(--orange);
+}
+.opt-label {
+  font-size: 12px; font-weight: 700;
+  color: var(--text-primary); display: block;
+}
+.opt-sub {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-muted); display: block;
+}
+.opt-btn.active .opt-label,
+.opt-btn.active .opt-sub { color: #fff; }
+
+/* ── TIMELINE ────────────────────────────────────────────────── */
+.timeline-wrap { }
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── STAGE CARD ──────────────────────────────────────────────── */
+.stage-card {
+  display: flex;
+  gap: 0;
+  animation: fadeUp 0.25s ease both;
+}
+
+/* Left connector column */
+.stage-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 36px;
+  flex-shrink: 0;
+}
+.stage-node {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--orange);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--orange);
+  flex-shrink: 0;
+  margin-top: 22px;
+  z-index: 1;
+}
+.stage-line {
+  width: 2px;
+  flex: 1;
+  background: var(--border);
+  margin: 4px 0;
+  min-height: 20px;
+}
+
+/* Right content column */
+.stage-body {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  margin-left: 8px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.stage-body:hover { border-color: var(--orange); }
+
+/* Stage botanical image */
+.stage-img-wrap {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px;
+  min-height: 90px;
+}
+[data-theme="light"] .stage-img-wrap {
+  background: #F8F8F8;
+}
+.stage-img {
+  max-height: 80px;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  /* Mix-blend-mode helps the olive images (originally white bg) work on light theme */
+}
+[data-theme="light"] .stage-img {
+  mix-blend-mode: multiply;
+}
+
+/* Stage header */
+.stage-header {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--orange);
+  padding: 12px 16px 8px;
+}
+
+/* Products list */
+.stage-products {
+  padding: 0 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.prod-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.prod-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.evyp-dot  { background: var(--orange); }
+.other-dot { background: var(--text-faint); }
+
+.prod-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.prod-name {
+  font-size: 13px; font-weight: 700;
+  color: var(--text-primary); line-height: 1.3;
+}
+.other-name { color: var(--text-muted); font-weight: 600; }
+.prod-dose {
+  font-size: 11px; color: var(--text-muted);
+  font-family: monospace;
+}
+
+.stage-evyp-count {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--orange);
+  padding: 8px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--orange)0A;
+}
+
+/* ── DESKTOP LAYOUT — horizontal timeline ────────────────────── */
+@media (min-width: 768px) {
+  .usage-main { padding: 32px 32px 48px; max-width: 1080px; margin: 0 auto; width: 100%; }
+
+  .timeline {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 12px;
+  }
+
+  /* Horizontal connector */
+  .stage-card {
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    min-width: 160px;
+    max-width: 220px;
+  }
+
+  .stage-connector {
+    flex-direction: row;
+    width: 100%;
+    height: 28px;
+    align-items: center;
+  }
+  .stage-node {
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+  .stage-line {
+    width: auto;
+    flex: 1;
+    height: 2px;
+    margin: 0 0 0 2px;
+    min-height: unset;
+    min-width: 12px;
+  }
+
+  .stage-body {
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: 12px;
+    width: calc(100% - 12px);
+  }
+
+  /* Hide connector line on last card */
+  .stage-card:last-child .stage-line { display: none; }
+  .stage-card:last-child .stage-body { margin-right: 0; width: 100%; }
+}
+
+/* ── REDUCED MOTION ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .stage-card, .program-view, .crop-card { animation: none; transition: none; }
+}
