@@ -11,8 +11,7 @@ const EVYP_MATCH = [
   'micrors','nf hyd','bmc fixer',
 ];
 function isEVYP(name) {
-  const n = name.toLowerCase();
-  return EVYP_MATCH.some(k => n.includes(k));
+  return true; // All recommended products are EVYP CBT products
 }
 
 // ── STATE ─────────────────────────────────────────────────────
@@ -151,11 +150,11 @@ function buildStageCard(s, idx, total) {
       </div>
       <div class="stage-body">
         <div class="stage-img-wrap">
-          <img src="images/stages/${s.img}" alt="${s.header}" class="stage-img" loading="lazy"/>
+          <img src="images/stages/${s.img}" alt="${s.header}" class="stage-img${activeCrop==='Olives'?' olive-img':''}" loading="lazy"/>
         </div>
         <div class="stage-header">${s.header}</div>
         <div class="stage-products">${productHTML}</div>
-        ${evypProds.length > 0 ? `<div class="stage-evyp-count">${evypProds.length} EVYP CBT product${evypProds.length>1?'s':''}</div>` : ''}
+
       </div>
     </div>`;
 }
