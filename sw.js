@@ -1,9 +1,9 @@
-const CACHE_NAME = 'evyp-cbt-v6';
+const CACHE_NAME = 'evyp-cbt-v7';
 const PRECACHE = [
   './', './index.html', './specs.html', './trials.html', './usage.html',
   './css/style.css', './css/specs.css', './css/trials.css', './css/usage.css',
   './js/app.js', './js/specs.js', './js/specs-data.js', './js/trials.js',
-  './js/usage.js', './js/usage-data.js',
+  './js/usage.js', './js/usage-data.js', './js/stage-icons.js',
   './manifest.json',
   './icons/logo-white.png','./icons/logo-color.png',
   './icons/icon-192.png','./icons/icon-512.png',
