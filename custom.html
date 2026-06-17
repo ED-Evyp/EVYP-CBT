@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <title>Custom Products — EVYP-CBT</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/custom.css"/>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-brand">
+    <img src="icons/logo-white.png" alt="EVYP CBT" class="topbar-logo logo-dark"/>
+    <img src="icons/logo-color.png" alt="EVYP CBT" class="topbar-logo logo-light"/>
+  </div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</header>
+
+<main class="custom-main">
+
+  <!-- ① THE STORY -->
+  <section class="story-section">
+    <div class="story-eyebrow">Manufacturer · Formulator · Partner</div>
+    <h1 class="story-title">Built From<br><span class="accent">The Source</span></h1>
+    <div class="story-body">
+      <p>Every product in our catalogue started as a custom formulation. We produce our amino acid base in-house through protein hydrolysis — which means the amino acid profile itself is a variable we control, not a fixed input we purchase. The free-L amino acid spectrum, nitrogen content, and molecular weight distribution can all be tuned to the target crop and application method before any additional ingredient is introduced.</p>
+      <p>On top of this foundation, we compound whatever the formulation requires — seaweed extracts, polysaccharides, vitamins, macro and trace elements, microorganisms, or silicon. The result is a finished biostimulant built around a specific agronomic objective, not a generic blend relabelled for your market.</p>
+    </div>
+    <div class="story-proofs">
+      <div class="proof-chip">Amino16 B&Zn<span>Base + B + Zn</span></div>
+      <div class="proof-chip">Amino Cell Si 3%<span>Base + Silicon</span></div>
+      <div class="proof-chip">Fruitfix<span>Base + Ascophyllum</span></div>
+      <div class="proof-chip">MicroRS<span>Base + Microorganisms</span></div>
+      <div class="proof-chip">BMC Fixer<span>Base + Stress factors</span></div>
+    </div>
+  </section>
+
+  <!-- ② THE BUILDER -->
+  <section class="builder-section">
+    <div class="builder-eyebrow">Interactive Formulation Explorer</div>
+    <h2 class="builder-title">Build Your Formulation</h2>
+    <p class="builder-intro">Select add-ons to combine with the amino acid base. This explorer illustrates the range of customisation available — not a final product specification.</p>
+
+    <div class="builder-layout">
+
+      <!-- BASE -->
+      <div class="base-panel">
+        <div class="base-label">AMINO ACID BASE</div>
+        <div class="base-card">
+          <div class="base-icon">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- DNA helix stylised -->
+              <path d="M20 8 C28 16 36 16 44 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.4"/>
+              <path d="M20 20 C28 28 36 28 44 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.5"/>
+              <path d="M20 32 C28 40 36 40 44 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <path d="M20 44 C28 52 36 52 44 44" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.5"/>
+              <path d="M20 56 C28 64 36 64 44 56" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.4"/>
+              <line x1="20" y1="8" x2="20" y2="56" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+              <line x1="44" y1="8" x2="44" y2="56" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+              <circle cx="20" cy="32" r="3" fill="currentColor"/>
+              <circle cx="44" cy="32" r="3" fill="currentColor"/>
+              <circle cx="32" cy="28" r="4" fill="currentColor" opacity="0.2" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="base-name">Protein Hydrolysate</div>
+          <div class="base-desc">In-house hydrolysis<br>Tunable amino acid profile<br>Free-L amino acids</div>
+          <div class="base-stats">
+            <div class="bs"><span class="bs-val">18</span><span class="bs-lbl">Amino Acids</span></div>
+            <div class="bs"><span class="bs-val">16%+</span><span class="bs-lbl">Total AA</span></div>
+            <div class="bs"><span class="bs-val">8%+</span><span class="bs-lbl">Free-L AA</span></div>
+          </div>
+        </div>
+        <div class="base-plus">+</div>
+      </div>
+
+      <!-- ADD-ONS -->
+      <div class="addons-panel">
+        <div id="addonCategories"></div>
+      </div>
+
+    </div>
+
+    <!-- LIVE SUMMARY -->
+    <div class="summary-panel" id="summaryPanel">
+      <div class="summary-empty" id="summaryEmpty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" opacity="0.4"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Select add-ons above to compose your formulation
+      </div>
+      <div class="summary-active" id="summaryActive" style="display:none">
+        <div class="summary-header">
+          <div class="summary-title-row">
+            <div class="summary-label">YOUR FORMULATION</div>
+            <button class="summary-reset" onclick="resetBuilder()">Clear all</button>
+          </div>
+          <div class="summary-name" id="summaryName"></div>
+        </div>
+        <div class="summary-chips" id="summaryChips"></div>
+        <div class="summary-note">This is an illustrative summary. Contact us to discuss specifications, concentrations, and regulatory requirements for your target market.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ PROCESS TIMELINE -->
+  <section class="process-section">
+    <div class="process-eyebrow">How Custom Formulation Works</div>
+    <h2 class="process-title">From Brief to Batch</h2>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h24M8 18h16M8 24h20"/><rect x="4" y="6" width="32" height="28" rx="3"/></svg>
+        </div>
+        <div class="step-title">Briefing</div>
+        <div class="step-desc">Tell us your target crop, application window, regulatory market, and any specific agronomic objective — stress tolerance, fruit set, quality enhancement, or reduced input programmes.</div>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6v4M20 30v4M6 20h4M30 20h4"/><circle cx="20" cy="20" r="8"/><circle cx="20" cy="20" r="3" fill="currentColor" opacity="0.3"/></svg>
+        </div>
+        <div class="step-title">Formulation Design</div>
+        <div class="step-desc">We design the amino acid base composition and select add-ons. Where phytohormone content, micronutrient balance, or organic certification matters, we flag those constraints early.</div>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6h12v8l4 6v14H10V20l4-6V6z"/><line x1="10" y1="26" x2="30" y2="26"/></svg>
+        </div>
+        <div class="step-title">Small Batch Trial</div>
+        <div class="step-desc">A pilot batch is produced for field or greenhouse evaluation. We can support with trial design and share standard measurement protocols aligned with our existing trial methodology.</div>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 32l8-12 6 8 5-10 5 14"/><path d="M4 20 Q8 10 20 10 Q32 10 36 20" opacity="0.3"/></svg>
+        </div>
+        <div class="step-title">Scale-Up</div>
+        <div class="step-desc">Once trial data confirms the formulation, we move to production scale. We handle SDS documentation, CLP labelling requirements, and can produce under private label if needed.</div>
+      </div>
+    </div>
+    <div class="process-cta">
+      <div class="cta-text">
+        <div class="cta-title">Ready to discuss a formulation?</div>
+        <div class="cta-sub">We typically respond to custom enquiries within 2 business days.</div>
+      </div>
+      <button class="cta-btn" disabled title="Inquiry form coming soon">
+        Request a Formulation Brief
+        <span class="cta-soon">Coming soon</span>
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<nav class="bottomnav">
+  <button class="nav-item" onclick="location.href='index.html#home'">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Home</span>
+  </button>
+  <button class="nav-item" onclick="location.href='specs.html'">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span>Specs</span>
+  </button>
+  <button class="nav-item active">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+    <span>Custom</span>
+  </button>
+  <button class="nav-item" onclick="location.href='usage.html'">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span>Usage</span>
+  </button>
+  <button class="nav-item" onclick="location.href='trials.html'">
+    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    <span>Trials</span>
+  </button>
+</nav>
+
+<script src="js/custom.js"></script>
+</body>
+</html>
